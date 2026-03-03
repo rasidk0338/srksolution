@@ -1,4 +1,7 @@
 {
+    "engines":{
+        "node": "v22.19.0"
+    },
   "name": "ledger-saas",
   "version": "1.0.0",
   "description": "SaaS ledger management application",
