@@ -1,0 +1,64 @@
+body {
+  /* subtle light gradient background */
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  min-height: 100vh;
+}
+.navbar {
+  /* professional blue gradient */
+  background: linear-gradient(to right, #4e54c8, #8f94fb) !important;
+}
+.card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.card-transaction {
+  background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+}
+.card-total {
+  background: linear-gradient(to right, #667eea, #764ba2);
+  color: #fff;
+}
+.table thead {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+}
+.table thead th {
+  color: #fff;
+  border-color: #667eea;
+}
+.table tbody tr {
+  background: linear-gradient(to right, #f8f9ff 0%, #f0f4ff 100%);
+  border-bottom: 1px solid #e0e7ff;
+}
+.table tbody tr:nth-child(odd) {
+  background: linear-gradient(to right, #ffffff 0%, #f5f7ff 100%);
+}
+.table tbody tr:hover {
+  background: linear-gradient(to right, #e8ecff 0%, #dde5ff 100%);
+}
+.table td {
+  padding: 12px 8px;
+  vertical-align: middle;
+}
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+.table .table {
+  background: #fff;
+  margin: 0;
+}
+.table .table thead {
+  background: #f8f9fa;
+}
+.table .table thead th {
+  color: #333;
+  border-color: #dee2e6;
+}
+.table .table tbody tr {
+  background: #fff;
+}
+.table .table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+.table .table tbody tr:hover {
+  background: #f8f9fa;
+}

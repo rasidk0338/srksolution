@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>srk_solution</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  <div class="container py-4">
+    
+    <form method="GET" action="/ledger/search" class=" mt-10 mb-3 row g-2 justify-content-center">
+      <div class="col-auto ">
+        <input type="text" name="q" class="form-control" placeholder="Search" value="<%= query %>" />
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </div>
+    </form>
+    <h3 class="text-center">Add Driver Details</h3>
+    <div class="card card-transaction mx-auto mb-4" style="max-width:600px">
+      <div class="card-body">
+        <form method="POST" action="/ledger/transaction">
+          <div class="mb-3">
+            <label class="form-label">Client Name</label>
+            <input name="clientName" class="form-control" placeholder="Client name" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mobile Number</label>
+            <input name="clientMobile" class="form-control" placeholder="Mobile number" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select name="type" class="form-select" required>
+              <option value="credit">Credit</option>
+              <option value="debit">Debit</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Amount</label>
+            <input name="amount" type="number" step="0.01" class="form-control" placeholder="Amount" required />
+          </div>
+          <!-- <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input name="description" class="form-control" placeholder="Description" />
+          </div> -->
+          <button class="btn btn-primary w-100">Add Transaction</button>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-4 mb-4">
+      <div class="col-md-4">
+        <div class="card card-total text-center">
+          <div class="card-body">
+            <h5 class="card-title">Total Credit</h5>
+            <p class="card-text"><%= totals ? totals.credit : 0 %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-total text-center">
+          <div class="card-body">
+            <h5 class="card-title">Total Debit</h5>
+            <p class="card-text"><%= totals ? totals.debit : 0 %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-total text-center">
+          <div class="card-body">
+            <h5 class="card-title">Balance</h5>
+            <p class="card-text"><%= totals ? totals.balance : 0 %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>S. No.</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Total Credit</th>
+          <th>Total Debit</th>
+          <th>Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% clients.forEach((client, index) => { %>
+          <% const t = client.getTotals(); %>
+          <tr>
+            <td><strong><%= index + 1 %></strong></td>
+            <td><strong><%= client.name %></strong></td>
+            <td><%= client.mobile %></td>
+            <td><%= t.credit %></td>
+            <td><%= t.debit %></td>
+            <td><%= t.balance %></td>
+            <td style="text-align: center;">
+              
+              <form style="display:inline;margin-left:5px;" method="POST" action="/ledger/client/<%= client._id %>/delete">
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    
+
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
